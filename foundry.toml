@@ -15,7 +15,7 @@ localhost = "${LOCALHOST}"
 
 # Custom chain for lisk-sepolia
 [etherscan]
-lisk-sepolia = { chain_id = 4202, api_url = "https://sepolia-blockscout.lisk.com/api", browser_url = "https://sepolia-blockscout.lisk.com/", key = "${ETHERSCAN_API_KEY}" }
+lisk-sepolia = { chain = 4202, url = "https://sepolia-blockscout.lisk.com/api", key = "" }
 
 [fmt]
 line_length = 120

@@ -16,6 +16,6 @@ contract NFTMarketplaceScript is Script {
         // Stop broadcasting
         vm.stopBroadcast();
 
-        console.log("AreaCalculator deployed to:", address(nftMarketplace));
+        console.log("NFTMarketplaceScript deployed to:", address(nftMarketplace));
     }
 }
