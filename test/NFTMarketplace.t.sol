@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.26;
 
-import {Test, console} from "forge-std/Test.sol";
-import {NFTMarketplace} from "../src/NFTMarketplace.sol";
+import { Test, console } from "forge-std/Test.sol";
+import { NFTMarketplace } from "../src/NFTMarketplace.sol";
 
 contract NFTMarketplaceTest is Test {
     NFTMarketplace public nftMarketplace;
@@ -40,8 +40,7 @@ contract NFTMarketplaceTest is Test {
         uint256 tokenId = 1;
         nftMarketplace.listNFT(tokenId, 1 ether);
 
-        (uint256 price, address seller, bool isListed) = nftMarketplace
-            .nftSales(tokenId);
+        (uint256 price, address seller, bool isListed) = nftMarketplace.nftSales(tokenId);
         assertEq(price, 1 ether);
         assertEq(seller, owner);
         assertTrue(isListed);
@@ -72,7 +71,7 @@ contract NFTMarketplaceTest is Test {
 
         vm.deal(buyer, 1 ether); // Give buyer 1 ether
         vm.startPrank(buyer);
-        nftMarketplace.buyNFT{value: 1 ether}(tokenId);
+        nftMarketplace.buyNFT{ value: 1 ether }(tokenId);
         assertEq(nftMarketplace.ownerOf(tokenId), buyer);
         vm.stopPrank();
     }
@@ -88,7 +87,7 @@ contract NFTMarketplaceTest is Test {
         vm.deal(buyer, 0.5 ether); // Give buyer only 0.5 ether
         vm.startPrank(buyer);
         vm.expectRevert(NFTMarketplace.InsufficientFunds.selector);
-        nftMarketplace.buyNFT{value: 0.5 ether}(tokenId);
+        nftMarketplace.buyNFT{ value: 0.5 ether }(tokenId);
         vm.stopPrank();
     }
 

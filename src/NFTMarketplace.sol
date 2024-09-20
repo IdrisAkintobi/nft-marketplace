@@ -18,17 +18,8 @@ contract NFTMarketplace is ERC721 {
 
     // Events
     event NFTMinted(uint256 indexed tokenId, address indexed owner);
-    event NFTListed(
-        uint256 indexed tokenId,
-        uint256 price,
-        address indexed seller
-    );
-    event NFTSold(
-        uint256 indexed tokenId,
-        uint256 price,
-        address indexed buyer,
-        address indexed seller
-    );
+    event NFTListed(uint256 indexed tokenId, uint256 price, address indexed seller);
+    event NFTSold(uint256 indexed tokenId, uint256 price, address indexed buyer, address indexed seller);
 
     // Errors
     error OnlyOwnerCanPerformThisAction();
@@ -61,11 +52,7 @@ contract NFTMarketplace is ERC721 {
         if (ownerOf(tokenId) != msg.sender) revert NotTokenOwner();
         if (price <= 0) revert PriceMustBeGreaterThanZero();
 
-        nftSales[tokenId] = NFTSale({
-            price: price,
-            seller: msg.sender,
-            isListed: true
-        });
+        nftSales[tokenId] = NFTSale({ price: price, seller: msg.sender, isListed: true });
 
         emit NFTListed(tokenId, price, msg.sender);
     }
